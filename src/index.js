@@ -19,6 +19,15 @@ import Dot from './Dot';
 import SkipButton from './buttons/SkipButton';
 import NextButton from './buttons/NextButton';
 import DoneButton from './buttons/DoneButton';
+import { GradientContainer } from 'Components'
+
+const config = {
+  start: { x: 1, y: 0 },
+  end: { x: 0, y: 1.1 },
+  locations: [0, 0.3, 1],
+  colors: ['#5C47FC','#503DE8', '#05006B'],
+  style:{flex: 1}
+}
 
 // hotfix: https://github.com/facebook/react-native/issues/16710
 const itemVisibleHotfix = { itemVisiblePercentThreshold: 100 };
@@ -176,7 +185,13 @@ class Onboarding extends Component {
     return (
       <Animated.View
         onLayout={this._onLayout}
-        style={{ flex: 1, backgroundColor, justifyContent: 'center' }}
+        style={{ flex: 1, justifyContent: 'center' }}
+      >
+      <GradientContainer
+        start={config.start}
+        end={config.end}
+        locations={config.locations}
+        colors={config.colors}  
       >
         {controlStatusBar && <StatusBar barStyle={barStyle} />}
         <FlatList
@@ -222,6 +237,7 @@ class Onboarding extends Component {
             />
           </SafeAreaView>
         )}
+        </GradientContainer>
       </Animated.View>
     );
   }
